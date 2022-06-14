@@ -207,6 +207,15 @@
 // ClassHalfOfDouble ::
 //      one of & - ! # % , : ; < = > @ _ ` ~
 //
+// --------------------------------------------------------------
+// NOTE: The following productions refer to the
+//       "Regular Expression Pattern Modifiers for ECMAScript" proposal.
+//       https://github.com/tc39/proposal-regexp-modifiers
+// --------------------------------------------------------------
+//
+// Atom ::
+//      ( ? RegularExpressionFlags : Disjunction )
+//
 
 "use strict";
 (function() {
@@ -455,6 +464,14 @@
       return addRaw({
         type: 'classString',
         characters: characters,
+        range: [from, to]
+      });
+    }
+
+    function createModifiersGroup(flags, from, to) {
+      return addRaw({
+        type: 'modifiersGroup',
+        flags: flags,
         range: [from, to]
       });
     }
@@ -719,6 +736,7 @@
       //      CharacterClass
       //      ( GroupSpecifier Disjunction )
       //      ( ? : Disjunction )
+      //      ( ? RegularExpressionFlags : Disjunction )
       // ExtendedAtom ::
       //      ExtendedPatternCharacter
       // ExtendedPatternCharacter ::
@@ -766,12 +784,32 @@
         group.name = name;
         return group;
       }
+      else if (features.modifiersGroup && match("(?-")) {
+        var modifiersGroup = parseModifiersGroup();
+        skip(":");
+        modifiersGroup.body = parseDisjunction();
+        if (!modifiersGroup.body) {
+          bail('Expected disjunction');
+        }
+        skip(")");
+        modifiersGroup.range = [modifiersGroup.range[0] - 3, pos];
+        return modifiersGroup;
+      }
       else {
         //      ( Disjunction )
         //      ( ? : Disjunction )
         return parseGroup('(?:', 'ignore', '(', 'normal');
       }
     }
+
+  function parseModifiersGroup() {
+    var res = matchReg(/^[sim]+/);
+    if (!res) {
+      bail('Invalid flags for modifiers group');
+    }
+
+    return createModifiersGroup(res[0], res.range[0], res.range[1]);
+  }
 
     function parseUnicodeSurrogatePairEscape(firstEscape) {
       if (isUnicodeMode) {

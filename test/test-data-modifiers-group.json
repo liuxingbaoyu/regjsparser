@@ -1,0 +1,119 @@
+{
+  "^[a-z](?-i:[a-z])$": {
+    "type": "alternative",
+    "body": [
+      {
+        "type": "anchor",
+        "kind": "start",
+        "range": [
+          0,
+          1
+        ],
+        "raw": "^"
+      },
+      {
+        "type": "characterClass",
+        "kind": "union",
+        "body": [
+          {
+            "type": "characterClassRange",
+            "min": {
+              "type": "value",
+              "kind": "symbol",
+              "codePoint": 97,
+              "range": [
+                2,
+                3
+              ],
+              "raw": "a"
+            },
+            "max": {
+              "type": "value",
+              "kind": "symbol",
+              "codePoint": 122,
+              "range": [
+                4,
+                5
+              ],
+              "raw": "z"
+            },
+            "range": [
+              2,
+              5
+            ],
+            "raw": "a-z"
+          }
+        ],
+        "negative": false,
+        "range": [
+          1,
+          6
+        ],
+        "raw": "[a-z]"
+      },
+      {
+        "type": "modifiersGroup",
+        "flags": "i",
+        "range": [
+          6,
+          17
+        ],
+        "raw": "i",
+        "body": {
+          "type": "characterClass",
+          "kind": "union",
+          "body": [
+            {
+              "type": "characterClassRange",
+              "min": {
+                "type": "value",
+                "kind": "symbol",
+                "codePoint": 97,
+                "range": [
+                  12,
+                  13
+                ],
+                "raw": "a"
+              },
+              "max": {
+                "type": "value",
+                "kind": "symbol",
+                "codePoint": 122,
+                "range": [
+                  14,
+                  15
+                ],
+                "raw": "z"
+              },
+              "range": [
+                12,
+                15
+              ],
+              "raw": "a-z"
+            }
+          ],
+          "negative": false,
+          "range": [
+            11,
+            16
+          ],
+          "raw": "[a-z]"
+        }
+      },
+      {
+        "type": "anchor",
+        "kind": "end",
+        "range": [
+          17,
+          18
+        ],
+        "raw": "$"
+      }
+    ],
+    "range": [
+      0,
+      18
+    ],
+    "raw": "^[a-z](?-i:[a-z])$"
+  }
+}
