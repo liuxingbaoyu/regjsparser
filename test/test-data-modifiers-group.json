@@ -116,25 +116,15 @@
     ],
     "raw": "^[a-z](?-i:[a-z])$"
   },
-  "/^(?i:[a-z])[a-z]$/": {
+  "^(?i:[a-z])[a-z]$": {
     "type": "alternative",
     "body": [
-      {
-        "type": "value",
-        "kind": "symbol",
-        "codePoint": 47,
-        "range": [
-          0,
-          1
-        ],
-        "raw": "/"
-      },
       {
         "type": "anchor",
         "kind": "start",
         "range": [
-          1,
-          2
+          0,
+          1
         ],
         "raw": "^"
       },
@@ -153,8 +143,8 @@
                 "kind": "symbol",
                 "codePoint": 97,
                 "range": [
-                  7,
-                  8
+                  6,
+                  7
                 ],
                 "raw": "a"
               },
@@ -163,28 +153,28 @@
                 "kind": "symbol",
                 "codePoint": 122,
                 "range": [
-                  9,
-                  10
+                  8,
+                  9
                 ],
                 "raw": "z"
               },
               "range": [
-                7,
-                10
+                6,
+                9
               ],
               "raw": "a-z"
             }
           ],
           "negative": false,
           "range": [
-            6,
-            11
+            5,
+            10
           ],
           "raw": "[a-z]"
         },
         "range": [
-          2,
-          12
+          1,
+          11
         ]
       },
       {
@@ -198,8 +188,8 @@
               "kind": "symbol",
               "codePoint": 97,
               "range": [
-                13,
-                14
+                12,
+                13
               ],
               "raw": "a"
             },
@@ -208,22 +198,22 @@
               "kind": "symbol",
               "codePoint": 122,
               "range": [
-                15,
-                16
+                14,
+                15
               ],
               "raw": "z"
             },
             "range": [
-              13,
-              16
+              12,
+              15
             ],
             "raw": "a-z"
           }
         ],
         "negative": false,
         "range": [
-          12,
-          17
+          11,
+          16
         ],
         "raw": "[a-z]"
       },
@@ -231,47 +221,27 @@
         "type": "anchor",
         "kind": "end",
         "range": [
-          17,
-          18
+          16,
+          17
         ],
         "raw": "$"
-      },
-      {
-        "type": "value",
-        "kind": "symbol",
-        "codePoint": 47,
-        "range": [
-          18,
-          19
-        ],
-        "raw": "/"
       }
     ],
     "range": [
       0,
-      19
+      17
     ],
-    "raw": "/^(?i:[a-z])[a-z]$/"
+    "raw": "^(?i:[a-z])[a-z]$"
   },
-  "/^(?i-s:[a-z])[a-z]$/": {
+  "^(?i-s:[a-z])[a-z]$": {
     "type": "alternative",
     "body": [
-      {
-        "type": "value",
-        "kind": "symbol",
-        "codePoint": 47,
-        "range": [
-          0,
-          1
-        ],
-        "raw": "/"
-      },
       {
         "type": "anchor",
         "kind": "start",
         "range": [
-          1,
-          2
+          0,
+          1
         ],
         "raw": "^"
       },
@@ -290,8 +260,8 @@
                 "kind": "symbol",
                 "codePoint": 97,
                 "range": [
-                  9,
-                  10
+                  8,
+                  9
                 ],
                 "raw": "a"
               },
@@ -300,28 +270,28 @@
                 "kind": "symbol",
                 "codePoint": 122,
                 "range": [
-                  11,
-                  12
+                  10,
+                  11
                 ],
                 "raw": "z"
               },
               "range": [
-                9,
-                12
+                8,
+                11
               ],
               "raw": "a-z"
             }
           ],
           "negative": false,
           "range": [
-            8,
-            13
+            7,
+            12
           ],
           "raw": "[a-z]"
         },
         "range": [
-          2,
-          14
+          1,
+          13
         ]
       },
       {
@@ -335,8 +305,8 @@
               "kind": "symbol",
               "codePoint": 97,
               "range": [
-                15,
-                16
+                14,
+                15
               ],
               "raw": "a"
             },
@@ -345,22 +315,22 @@
               "kind": "symbol",
               "codePoint": 122,
               "range": [
-                17,
-                18
+                16,
+                17
               ],
               "raw": "z"
             },
             "range": [
-              15,
-              18
+              14,
+              17
             ],
             "raw": "a-z"
           }
         ],
         "negative": false,
         "range": [
-          14,
-          19
+          13,
+          18
         ],
         "raw": "[a-z]"
       },
@@ -368,27 +338,17 @@
         "type": "anchor",
         "kind": "end",
         "range": [
-          19,
-          20
+          18,
+          19
         ],
         "raw": "$"
-      },
-      {
-        "type": "value",
-        "kind": "symbol",
-        "codePoint": 47,
-        "range": [
-          20,
-          21
-        ],
-        "raw": "/"
       }
     ],
     "range": [
       0,
-      21
+      19
     ],
-    "raw": "/^(?i-s:[a-z])[a-z]$/"
+    "raw": "^(?i-s:[a-z])[a-z]$"
   },
   "^[a-z](?:[a-z])$": {
     "type": "alternative",
@@ -526,5 +486,11 @@
     "name": "SyntaxError",
     "message": "flags cannot be duplicated for modifiers group at position 12\n    a-z](?-mim:[a-z])$\n              ^",
     "input": "^[a-z](?-mim:[a-z])$"
+  },
+  "^[a-z](?-:[a-z])$": {
+    "type": "error",
+    "name": "SyntaxError",
+    "message": "Invalid flags for modifiers group at position 9\n    ^[a-z](?-:[a-z])$\n             ^",
+    "input": "^[a-z](?-:[a-z])$"
   }
 }

@@ -215,6 +215,7 @@
 //
 // Atom ::
 //      ( ? RegularExpressionFlags : Disjunction )
+//      ( ? RegularExpressionFlags - RegularExpressionFlags : Disjunction )
 //
 
 "use strict";
@@ -729,6 +730,7 @@
       //      ( GroupSpecifier Disjunction )
       //      ( ? : Disjunction )
       //      ( ? RegularExpressionFlags : Disjunction )
+      //      ( ? RegularExpressionFlags - RegularExpressionFlags : Disjunction )
       // ExtendedAtom ::
       //      ExtendedPatternCharacter
       // ExtendedPatternCharacter ::
@@ -812,14 +814,16 @@
     var disablingFlags;
     if(match("-")){
       disablingFlags = matchReg(/^[sim]+/);
-    }
-
-    if (!enablingFlags && !disablingFlags) {
+      if (!disablingFlags) {
+        bail('Invalid flags for modifiers group');
+      }
+    } else if(!enablingFlags){
       bail('Invalid flags for modifiers group');
     }
 
     enablingFlags = enablingFlags ? enablingFlags[0] : "";
     disablingFlags = disablingFlags ? disablingFlags[0] : "";
+
     var flags = enablingFlags + disablingFlags;
     if(flags.length > 3 || hasDupChar(flags)){
       bail('flags cannot be duplicated for modifiers group');
