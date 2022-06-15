@@ -785,8 +785,8 @@
         if (!modifiersGroup.body) {
           bail('Expected disjunction');
         }
-        modifiersGroup.range = [from, pos];
         skip(")");
+        modifiersGroup.range = [from, pos];
         return modifiersGroup;
       }
       else {
