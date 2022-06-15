@@ -779,17 +779,7 @@
         return group;
       }
       else if (features.modifiersGroup && str.indexOf("(?") == pos && str[pos+2] != ":") {
-        var from = pos;
-        incr(2);
-        var modifiersGroup = parseModifiersGroup();
-        skip(":");
-        modifiersGroup.body = parseDisjunction();
-        if (!modifiersGroup.body) {
-          bail('Expected disjunction');
-        }
-        skip(")");
-        modifiersGroup.range = [from, pos];
-        return modifiersGroup;
+        return parseModifiersGroup();
       }
       else {
         //      ( Disjunction )
@@ -810,6 +800,9 @@
       return false;
     }
 
+    var from = pos;
+    incr(2);
+
     var enablingFlags = matchReg(/^[sim]+/);
     var disablingFlags;
     if(match("-")){
@@ -829,11 +822,20 @@
       bail('flags cannot be duplicated for modifiers group');
     }
 
-    return {
+    var modifiersGroup = {
         type: 'modifiersGroup',
         enablingFlags: enablingFlags,
         disablingFlags: disablingFlags,
       };
+
+    skip(":");
+    modifiersGroup.body = parseDisjunction();
+    if (!modifiersGroup.body) {
+      bail('Expected disjunction');
+    }
+    skip(")");
+    modifiersGroup.range = [from, pos];
+    return modifiersGroup;
   }
 
     function parseUnicodeSurrogatePairEscape(firstEscape) {
