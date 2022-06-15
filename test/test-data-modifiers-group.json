@@ -53,12 +53,8 @@
       },
       {
         "type": "modifiersGroup",
-        "flags": "i",
-        "range": [
-          6,
-          17
-        ],
-        "raw": "i",
+        "enablingFlags": "",
+        "disablingFlags": "i",
         "body": {
           "type": "characterClass",
           "kind": "union",
@@ -98,7 +94,11 @@
             16
           ],
           "raw": "[a-z]"
-        }
+        },
+        "range": [
+          6,
+          16
+        ]
       },
       {
         "type": "anchor",
@@ -115,5 +115,416 @@
       18
     ],
     "raw": "^[a-z](?-i:[a-z])$"
+  },
+  "/^(?i:[a-z])[a-z]$/": {
+    "type": "alternative",
+    "body": [
+      {
+        "type": "value",
+        "kind": "symbol",
+        "codePoint": 47,
+        "range": [
+          0,
+          1
+        ],
+        "raw": "/"
+      },
+      {
+        "type": "anchor",
+        "kind": "start",
+        "range": [
+          1,
+          2
+        ],
+        "raw": "^"
+      },
+      {
+        "type": "modifiersGroup",
+        "enablingFlags": "i",
+        "disablingFlags": "",
+        "body": {
+          "type": "characterClass",
+          "kind": "union",
+          "body": [
+            {
+              "type": "characterClassRange",
+              "min": {
+                "type": "value",
+                "kind": "symbol",
+                "codePoint": 97,
+                "range": [
+                  7,
+                  8
+                ],
+                "raw": "a"
+              },
+              "max": {
+                "type": "value",
+                "kind": "symbol",
+                "codePoint": 122,
+                "range": [
+                  9,
+                  10
+                ],
+                "raw": "z"
+              },
+              "range": [
+                7,
+                10
+              ],
+              "raw": "a-z"
+            }
+          ],
+          "negative": false,
+          "range": [
+            6,
+            11
+          ],
+          "raw": "[a-z]"
+        },
+        "range": [
+          2,
+          11
+        ]
+      },
+      {
+        "type": "characterClass",
+        "kind": "union",
+        "body": [
+          {
+            "type": "characterClassRange",
+            "min": {
+              "type": "value",
+              "kind": "symbol",
+              "codePoint": 97,
+              "range": [
+                13,
+                14
+              ],
+              "raw": "a"
+            },
+            "max": {
+              "type": "value",
+              "kind": "symbol",
+              "codePoint": 122,
+              "range": [
+                15,
+                16
+              ],
+              "raw": "z"
+            },
+            "range": [
+              13,
+              16
+            ],
+            "raw": "a-z"
+          }
+        ],
+        "negative": false,
+        "range": [
+          12,
+          17
+        ],
+        "raw": "[a-z]"
+      },
+      {
+        "type": "anchor",
+        "kind": "end",
+        "range": [
+          17,
+          18
+        ],
+        "raw": "$"
+      },
+      {
+        "type": "value",
+        "kind": "symbol",
+        "codePoint": 47,
+        "range": [
+          18,
+          19
+        ],
+        "raw": "/"
+      }
+    ],
+    "range": [
+      0,
+      19
+    ],
+    "raw": "/^(?i:[a-z])[a-z]$/"
+  },
+  "/^(?i-s:[a-z])[a-z]$/": {
+    "type": "alternative",
+    "body": [
+      {
+        "type": "value",
+        "kind": "symbol",
+        "codePoint": 47,
+        "range": [
+          0,
+          1
+        ],
+        "raw": "/"
+      },
+      {
+        "type": "anchor",
+        "kind": "start",
+        "range": [
+          1,
+          2
+        ],
+        "raw": "^"
+      },
+      {
+        "type": "modifiersGroup",
+        "enablingFlags": "i",
+        "disablingFlags": "s",
+        "body": {
+          "type": "characterClass",
+          "kind": "union",
+          "body": [
+            {
+              "type": "characterClassRange",
+              "min": {
+                "type": "value",
+                "kind": "symbol",
+                "codePoint": 97,
+                "range": [
+                  9,
+                  10
+                ],
+                "raw": "a"
+              },
+              "max": {
+                "type": "value",
+                "kind": "symbol",
+                "codePoint": 122,
+                "range": [
+                  11,
+                  12
+                ],
+                "raw": "z"
+              },
+              "range": [
+                9,
+                12
+              ],
+              "raw": "a-z"
+            }
+          ],
+          "negative": false,
+          "range": [
+            8,
+            13
+          ],
+          "raw": "[a-z]"
+        },
+        "range": [
+          2,
+          13
+        ]
+      },
+      {
+        "type": "characterClass",
+        "kind": "union",
+        "body": [
+          {
+            "type": "characterClassRange",
+            "min": {
+              "type": "value",
+              "kind": "symbol",
+              "codePoint": 97,
+              "range": [
+                15,
+                16
+              ],
+              "raw": "a"
+            },
+            "max": {
+              "type": "value",
+              "kind": "symbol",
+              "codePoint": 122,
+              "range": [
+                17,
+                18
+              ],
+              "raw": "z"
+            },
+            "range": [
+              15,
+              18
+            ],
+            "raw": "a-z"
+          }
+        ],
+        "negative": false,
+        "range": [
+          14,
+          19
+        ],
+        "raw": "[a-z]"
+      },
+      {
+        "type": "anchor",
+        "kind": "end",
+        "range": [
+          19,
+          20
+        ],
+        "raw": "$"
+      },
+      {
+        "type": "value",
+        "kind": "symbol",
+        "codePoint": 47,
+        "range": [
+          20,
+          21
+        ],
+        "raw": "/"
+      }
+    ],
+    "range": [
+      0,
+      21
+    ],
+    "raw": "/^(?i-s:[a-z])[a-z]$/"
+  },
+  "^[a-z](?:[a-z])$": {
+    "type": "alternative",
+    "body": [
+      {
+        "type": "anchor",
+        "kind": "start",
+        "range": [
+          0,
+          1
+        ],
+        "raw": "^"
+      },
+      {
+        "type": "characterClass",
+        "kind": "union",
+        "body": [
+          {
+            "type": "characterClassRange",
+            "min": {
+              "type": "value",
+              "kind": "symbol",
+              "codePoint": 97,
+              "range": [
+                2,
+                3
+              ],
+              "raw": "a"
+            },
+            "max": {
+              "type": "value",
+              "kind": "symbol",
+              "codePoint": 122,
+              "range": [
+                4,
+                5
+              ],
+              "raw": "z"
+            },
+            "range": [
+              2,
+              5
+            ],
+            "raw": "a-z"
+          }
+        ],
+        "negative": false,
+        "range": [
+          1,
+          6
+        ],
+        "raw": "[a-z]"
+      },
+      {
+        "type": "group",
+        "behavior": "ignore",
+        "body": [
+          {
+            "type": "characterClass",
+            "kind": "union",
+            "body": [
+              {
+                "type": "characterClassRange",
+                "min": {
+                  "type": "value",
+                  "kind": "symbol",
+                  "codePoint": 97,
+                  "range": [
+                    10,
+                    11
+                  ],
+                  "raw": "a"
+                },
+                "max": {
+                  "type": "value",
+                  "kind": "symbol",
+                  "codePoint": 122,
+                  "range": [
+                    12,
+                    13
+                  ],
+                  "raw": "z"
+                },
+                "range": [
+                  10,
+                  13
+                ],
+                "raw": "a-z"
+              }
+            ],
+            "negative": false,
+            "range": [
+              9,
+              14
+            ],
+            "raw": "[a-z]"
+          }
+        ],
+        "range": [
+          6,
+          15
+        ],
+        "raw": "(?:[a-z])"
+      },
+      {
+        "type": "anchor",
+        "kind": "end",
+        "range": [
+          15,
+          16
+        ],
+        "raw": "$"
+      }
+    ],
+    "range": [
+      0,
+      16
+    ],
+    "raw": "^[a-z](?:[a-z])$"
+  },
+  "^[a-z](?imi:[a-z])$": {
+    "type": "error",
+    "name": "SyntaxError",
+    "message": "flags cannot be duplicated for modifiers group at position 11\n    [a-z](?imi:[a-z])$\n              ^",
+    "input": "^[a-z](?imi:[a-z])$"
+  },
+  "^[a-z](?i-mi:[a-z])$": {
+    "type": "error",
+    "name": "SyntaxError",
+    "message": "flags cannot be duplicated for modifiers group at position 12\n    a-z](?i-mi:[a-z])$\n              ^",
+    "input": "^[a-z](?i-mi:[a-z])$"
+  },
+  "^[a-z](?-mim:[a-z])$": {
+    "type": "error",
+    "name": "SyntaxError",
+    "message": "flags cannot be duplicated for modifiers group at position 12\n    a-z](?-mim:[a-z])$\n              ^",
+    "input": "^[a-z](?-mim:[a-z])$"
   }
 }

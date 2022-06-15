@@ -468,14 +468,6 @@
       });
     }
 
-    function createModifiersGroup(flags, from, to) {
-      return addRaw({
-        type: 'modifiersGroup',
-        flags: flags,
-        range: [from, to]
-      });
-    }
-
     function flattenBody(body) {
       if (body.type === 'alternative') {
         return body.body;
@@ -784,15 +776,17 @@
         group.name = name;
         return group;
       }
-      else if (features.modifiersGroup && match("(?-")) {
+      else if (features.modifiersGroup && str.indexOf("(?") == pos && str[pos+2] != ":") {
+        var from = pos;
+        incr(2);
         var modifiersGroup = parseModifiersGroup();
         skip(":");
         modifiersGroup.body = parseDisjunction();
         if (!modifiersGroup.body) {
           bail('Expected disjunction');
         }
+        modifiersGroup.range = [from, pos];
         skip(")");
-        modifiersGroup.range = [modifiersGroup.range[0] - 3, pos];
         return modifiersGroup;
       }
       else {
@@ -803,12 +797,39 @@
     }
 
   function parseModifiersGroup() {
-    var res = matchReg(/^[sim]+/);
-    if (!res) {
+    function hasDupChar(str) {
+      var i = 0;
+      while (i < str.length) {
+        if (str.indexOf(str[i], i + 1) != -1) {
+          return true;
+        }
+        i++;
+      }
+      return false;
+    }
+
+    var enablingFlags = matchReg(/^[sim]+/);
+    var disablingFlags;
+    if(match("-")){
+      disablingFlags = matchReg(/^[sim]+/);
+    }
+
+    if (!enablingFlags && !disablingFlags) {
       bail('Invalid flags for modifiers group');
     }
 
-    return createModifiersGroup(res[0], res.range[0], res.range[1]);
+    enablingFlags = enablingFlags ? enablingFlags[0] : "";
+    disablingFlags = disablingFlags ? disablingFlags[0] : "";
+    var flags = enablingFlags + disablingFlags;
+    if(flags.length > 3 || hasDupChar(flags)){
+      bail('flags cannot be duplicated for modifiers group');
+    }
+
+    return {
+        type: 'modifiersGroup',
+        enablingFlags: enablingFlags,
+        disablingFlags: disablingFlags,
+      };
   }
 
     function parseUnicodeSurrogatePairEscape(firstEscape) {

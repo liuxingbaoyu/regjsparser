@@ -59,4 +59,5 @@ updateFixtures('./test-data-unicode-set.json', 'v', {
 });
 updateFixtures('./test-data-modifiers-group.json', '', {
   modifiersGroup: true,
+  namedGroups: true,
 });
