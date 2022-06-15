@@ -788,55 +788,55 @@
       }
     }
 
-  function parseModifiersGroup() {
-    function hasDupChar(str) {
-      var i = 0;
-      while (i < str.length) {
-        if (str.indexOf(str[i], i + 1) != -1) {
-          return true;
+    function parseModifiersGroup() {
+      function hasDupChar(str) {
+        var i = 0;
+        while (i < str.length) {
+          if (str.indexOf(str[i], i + 1) != -1) {
+            return true;
+          }
+          i++;
         }
-        i++;
+        return false;
       }
-      return false;
-    }
 
-    var from = pos;
-    incr(2);
+      var from = pos;
+      incr(2);
 
-    var enablingFlags = matchReg(/^[sim]+/);
-    var disablingFlags;
-    if(match("-")){
-      disablingFlags = matchReg(/^[sim]+/);
-      if (!disablingFlags) {
+      var enablingFlags = matchReg(/^[sim]+/);
+      var disablingFlags;
+      if(match("-")){
+        disablingFlags = matchReg(/^[sim]+/);
+        if (!disablingFlags) {
+          bail('Invalid flags for modifiers group');
+        }
+      } else if(!enablingFlags){
         bail('Invalid flags for modifiers group');
       }
-    } else if(!enablingFlags){
-      bail('Invalid flags for modifiers group');
-    }
 
-    enablingFlags = enablingFlags ? enablingFlags[0] : "";
-    disablingFlags = disablingFlags ? disablingFlags[0] : "";
+      enablingFlags = enablingFlags ? enablingFlags[0] : "";
+      disablingFlags = disablingFlags ? disablingFlags[0] : "";
 
-    var flags = enablingFlags + disablingFlags;
-    if(flags.length > 3 || hasDupChar(flags)){
-      bail('flags cannot be duplicated for modifiers group');
-    }
+      var flags = enablingFlags + disablingFlags;
+      if(flags.length > 3 || hasDupChar(flags)){
+        bail('flags cannot be duplicated for modifiers group');
+      }
 
-    var modifiersGroup = {
+      var modifiersGroup = {
         type: 'modifiersGroup',
         enablingFlags: enablingFlags,
         disablingFlags: disablingFlags,
       };
 
-    skip(":");
-    modifiersGroup.body = parseDisjunction();
-    if (!modifiersGroup.body) {
-      bail('Expected disjunction');
+      skip(":");
+      modifiersGroup.body = parseDisjunction();
+      if (!modifiersGroup.body) {
+        bail('Expected disjunction');
+      }
+      skip(")");
+      modifiersGroup.range = [from, pos];
+      return modifiersGroup;
     }
-    skip(")");
-    modifiersGroup.range = [from, pos];
-    return modifiersGroup;
-  }
 
     function parseUnicodeSurrogatePairEscape(firstEscape) {
       if (isUnicodeMode) {
